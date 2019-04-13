@@ -1,24 +1,47 @@
 const static = [
   {
-    name: "Fruit Salad",
-    ingredients: ["banana", "apple", "strawberry"]
+    name: "Fruid Salad",
+    ingredients: ["Banana", "Apple", "Orange"],
+    preparation:
+      "Wash fruits, peel them (if necessary) and layer them in a bowl. Mix em up and enjoy.",
+    image: "/images/fruitsalad.png"
   },
   {
     name: "Vodka Energy",
-    ingredients: ["Red Bull", "Vodka"]
+    ingredients: ["Vodka", "Red Bull"],
+    preparation: "Mix 10cl Red Bull and 4cl Vodka together. Enjoy",
+    image: "/images/drink.png"
+  },
+  {
+    name: "Banana pie",
+    ingredients: [
+      "Banana",
+      "Butter",
+      "Sugar",
+      "Egg",
+      "Flour",
+      "Backing Powder"
+    ],
+    preparation:
+      "Preheat the ofen (200 degrees celsius. Stir 125g butter, 125g sugar and 2 eggs until foamy. Mash 2 bananas and stir them in. Mix the 175g flour and 1/2 pack of baking powder and stir in the mixture. Grease a small baking sheet and spread the dough on it. Bake until gold brown for 15 minutes.",
+    image: "/images/bananapie.png"
   }
 ];
 
 function getDifference(recipes, givenIngredients) {
   return recipes
     .map(recipe => ({
-    ...recipe,
-    uses: recipe.ingredients.filter(
-      ingredient => givenIngredients.indexOf(ingredient) !== -1
-    ),
-    needs: recipe.ingredients.filter(
-      ingredient => givenIngredients.indexOf(ingredient) === -1
-    )
+      ...recipe,
+      ingredients: recipe.ingredients.map(item => item.toLowerCase())
+    }))
+    .map(recipe => ({
+      ...recipe,
+      uses: recipe.ingredients.filter(
+        ingredient => givenIngredients.indexOf(ingredient) !== -1
+      ),
+      needs: recipe.ingredients.filter(
+        ingredient => givenIngredients.indexOf(ingredient) === -1
+      )
     }))
     .filter(recipe => recipe.uses.length > 0);
 }

@@ -10,7 +10,8 @@ const static = [
 ];
 
 function getDifference(recipes, givenIngredients) {
-  return recipes.map(recipe => ({
+  return recipes
+    .map(recipe => ({
     ...recipe,
     uses: recipe.ingredients.filter(
       ingredient => givenIngredients.indexOf(ingredient) !== -1
@@ -18,7 +19,8 @@ function getDifference(recipes, givenIngredients) {
     needs: recipe.ingredients.filter(
       ingredient => givenIngredients.indexOf(ingredient) === -1
     )
-  }));
+    }))
+    .filter(recipe => recipe.uses.length > 0);
 }
 
 module.exports = async function(context, req) {

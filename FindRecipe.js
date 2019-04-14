@@ -8,7 +8,7 @@ const static = [
   },
   {
     name: "Vodka Energy",
-    ingredients: ["Vodka", "Red Bull"],
+    ingredients: ["Vodka", "Red_Bull"],
     preparation: "Mix 10cl Red Bull and 4cl Vodka together. Enjoy",
     image: "/images/drink.png"
   },
